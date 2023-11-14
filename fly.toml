@@ -1,0 +1,31 @@
+# fly.toml app configuration file generated for jonaslivebook on 2023-11-14T09:35:38+01:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "jonaslivebook"
+primary_region = "ams"
+# taken from https://gist.github.com/chrismccord/59a5e81f144a4dfb4bf0a8c3f2673131
+swap_size_mb = 2048
+
+[build]
+
+[env]
+  ELIXIR_ERL_OPTIONS = "-proto_dist inet6_tcp"
+  LIVEBOOK_DATA_PATH = "/data"
+  LIVEBOOK_HOME = "/data"
+  LIVEBOOK_IP = "::"
+  LIVEBOOK_ROOT_PATH = "/data"
+  PORT = "8080"
+
+[[mounts]]
+  source = "data"
+  destination = "/data"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
