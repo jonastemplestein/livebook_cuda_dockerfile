@@ -3,10 +3,8 @@
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "jonaslivebook"
+app = "livebookjonas"
 primary_region = "ams"
-# taken from https://gist.github.com/chrismccord/59a5e81f144a4dfb4bf0a8c3f2673131
-swap_size_mb = 2048
 
 [build]
 
