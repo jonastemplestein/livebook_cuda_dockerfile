@@ -2,6 +2,8 @@
 
 The file uses the official Elixir base images from [the docker hub](https://hub.docker.com/r/hexpm/elixir/tags?page=1). You can install any combination of Elixir version, Erlang version and operating system that is available there. Just change the ARGS at the top of the Dockerfile accordingly. That said, I've only tested the CUDA installation on Ubuntu 22.04 Jammy Jellyfish.
 
+Livebook data, as well as bumblebee and mix caches will be stored in /data, so you probably want to mount a persistent volume there.
+
 I've pieced the Dockerfile together from the following places:
 
 - [Chris McCord's gist with a bumblebee Phoenix demo running on fly.io GPUs](https://gist.github.com/chrismccord/59a5e81f144a4dfb4bf0a8c3f2673131)
@@ -18,6 +20,10 @@ I've included a `fly.toml` file that makes it easy to host on fly.io.
 You can deploy this anywhere Docker containers are deployed. Just make sure you can access port 8080.
 
 Or use the included `fly.toml` to deploy to fly.io. Just make sure to adjust the app name. And be aware that GPU instances are currently not in public availability, yet.
+
+In that case I used the following command to launch the instance:
+
+```fly deploy --vm-gpu-kind a100-pcie-40gb --volume-initial-size 100```
 
 ## How do I know it's all working?
 
